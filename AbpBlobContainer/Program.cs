@@ -11,6 +11,7 @@ public class Program
         using var application = AbpApplicationFactory.Create<BlobApplicationModule>
           (options =>
           {
+              
           });
         application.Initialize();
 

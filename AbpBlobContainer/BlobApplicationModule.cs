@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Volo.Abp.BlobStoring;
 using Volo.Abp.Modularity;
 using Volo.Abp.BlobStoring.FileSystem;
+using AbpBlobContainer.Data;
 
 namespace AbpBlobContainer
 {
@@ -22,6 +23,7 @@ namespace AbpBlobContainer
 
             context.Services.AddTransient<IFilesService, FilesService>();
 
+            context.Services.AddDbContext<EmployeeDBContext>();
 
             //Configure the Default Container
             Configure<AbpBlobStoringOptions>(options =>
