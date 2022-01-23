@@ -1,19 +1,14 @@
-﻿
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Volo.Abp.BlobStoring;
-using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.Modularity;
+using Volo.Abp.BlobStoring.FileSystem;
 
 namespace AbpBlobContainer
 {
-    [DependsOn(typeof(AbpBlobStoringModule))]
-    [DependsOn(typeof(BlobStoringDatabaseEntityFrameworkCoreModule))]
+    //[DependsOn(typeof(AbpBlobStoringModule))]
+    [DependsOn(typeof(AbpBlobStoringFileSystemModule))]
     public class BlobApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -26,6 +21,22 @@ namespace AbpBlobContainer
             });
 
             context.Services.AddTransient<IFilesService, FilesService>();
+
+
+            //Configure the Default Container
+            Configure<AbpBlobStoringOptions>(options =>
+            {
+                options.Containers.ConfigureDefault(container =>
+                {
+                    //Disable multi-tenancy for a specific container
+                    container.IsMultiTenant = false;
+
+                    container.UseFileSystem(fileSystem =>
+                    {
+                        fileSystem.BasePath = "C:\\my-files";
+                    });
+                });
+            });
 
         }
 

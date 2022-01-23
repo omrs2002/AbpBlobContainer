@@ -14,22 +14,6 @@ public class Program
           });
         application.Initialize();
 
-        //Resolve a service and use it
-        //var services = new ServiceCollection();
-
-        //services.AddLogging(b =>
-        //{
-        //    b.AddConsole();
-        //    b.SetMinimumLevel(LogLevel.Debug);
-        //});
-
-        //services.AddTransient<IFilesService, FilesService>();
-
-
-        //var serviceProvider = services.BuildServiceProvider();
-
-        //using var scope = serviceProvider.CreateScope();
-
         var logger = application.ServiceProvider.GetRequiredService<ILogger<Program>>();
         logger.LogInformation("Current directory {0}", Directory.GetCurrentDirectory());
         logger.LogDebug("Starting application");
@@ -43,7 +27,7 @@ public class Program
         var s = fileS.GetBytesAsync();
 
         Console.WriteLine("Press ENTER to stop application...");
-        //Console.ReadLine();
+        Console.ReadLine();
 
 
     }
