@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp" Version="7.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
       <PrivateAssets>all</PrivateAssets>
@@ -32,6 +33,11 @@
     <PackageReference Include="Volo.Abp.BlobStoring" Version="5.1.2" />
     <PackageReference Include="Volo.Abp.BlobStoring.Database.Domain" Version="5.1.2" />
     <PackageReference Include="Volo.Abp.BlobStoring.Database.Domain.Shared" Version="5.1.2" />
+    <PackageReference Include="Volo.Abp.BlobStoring.Database.EntityFrameworkCore" Version="5.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App\Repository\" />
   </ItemGroup>
 
 </Project>
