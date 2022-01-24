@@ -5,9 +5,10 @@ using Volo.Abp.BlobStoring;
 using Volo.Abp.Modularity;
 using Volo.Abp.BlobStoring.FileSystem;
 
+
 namespace AbpBlobContainer
 {
-    //[DependsOn(typeof(AbpBlobStoringModule))]
+    
     [DependsOn(typeof(AbpBlobStoringFileSystemModule))]
     public class BlobApplicationModule : AbpModule
     {
@@ -21,7 +22,6 @@ namespace AbpBlobContainer
             });
 
             context.Services.AddTransient<IFilesService, FilesService>();
-
 
             //Configure the Default Container
             Configure<AbpBlobStoringOptions>(options =>
