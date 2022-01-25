@@ -25,14 +25,12 @@ namespace AbpBlobContainer.DB.App.Services
         {
             _fileContainer = fileContainer;
         }
-
-
-        [UnitOfWork]
+        
         public async Task SaveBlobAsync(SaveBlobInputDto input)
         {
             await _fileContainer.SaveAsync(input.Name, input.Content, true);
         }
-        [UnitOfWork]
+        
         public async Task<BlobDto> GetBlobAsync(GetBlobRequestDto input)
         {
             var blob = await _fileContainer.GetAllBytesAsync(input.Name);

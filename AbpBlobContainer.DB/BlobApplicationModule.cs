@@ -6,6 +6,7 @@ using Volo.Abp.BlobStoring;
 using Volo.Abp.BlobStoring.Database;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.Modularity;
+using Volo.Abp.Uow;
 
 namespace AbpBlobContainer.DB
 {
@@ -25,7 +26,8 @@ namespace AbpBlobContainer.DB
                
                 b.SetMinimumLevel(LogLevel.Debug);
             });
-            
+
+
 
             Configure<AbpBlobStoringOptions>(options =>
             {
@@ -36,6 +38,11 @@ namespace AbpBlobContainer.DB
             });
 
             context.Services.AddScoped<IDBFilesService, DBFilesService>();
+
+            Configure<AbpUnitOfWorkDefaultOptions>(options =>
+            {
+                options.TransactionBehavior = UnitOfWorkTransactionBehavior.Disabled;
+            });
 
         }
 
